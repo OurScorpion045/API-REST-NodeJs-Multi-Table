@@ -1,0 +1,25 @@
+{
+  "name": "proyecto-api-rest-nodejs-multi-table",
+  "version": "1.0.0",
+  "description": "API-REST creada en nodejs con una base de datos SQL con multiples tablas",
+  "keywords": [
+    "NodeJs",
+    "SQL",
+    "API-REST"
+  ],
+  "homepage": "https://github.com/OurScorpion045/API-REST-NodeJs-Multi-Table#readme",
+  "bugs": {
+    "url": "https://github.com/OurScorpion045/API-REST-NodeJs-Multi-Table/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OurScorpion045/API-REST-NodeJs-Multi-Table.git"
+  },
+  "license": "MIT",
+  "author": "Mario Alejandro Hernandez Lopez -- OurScorpion045",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
