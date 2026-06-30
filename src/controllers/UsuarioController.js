@@ -1,5 +1,5 @@
 import { UsuarioModel } from "../models/UsuarioModel.js";
-import { hashPassword, hashPassword } from "../utils/bcrypt.js";
+import { hashPassword } from "../utils/bcrypt.js";
 
 class UsuarioController {
 
