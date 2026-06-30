@@ -40,4 +40,30 @@ class PacientesController {
             res.end(JSON.stringify("Error: " + err));
         }
     }
+
+    static async updatePaciente(req, res, DNI, Nombre, Direccion, CodigoPostal, Telefono, Genero, FechaNacimiento, Correo, PacienteId) {
+        try {
+            res.writeHead(200, {
+                'Content-Type': 'application/json'
+            });
+            const results = await PacientesModel.updatePaciente(DNI, Nombre, Direccion, CodigoPostal, Telefono, Genero, FechaNacimiento, Correo, PacienteId);
+            res.end("Paciente actualizado correctamente");
+        } catch (err) {
+            res.writeHead(500);
+            res.end(JSON.stringify("Error: " + err));
+        }
+    }
+
+    static async deletePaciente(PacienteId) {
+        try {
+            res.writeHead(200, {
+                'Content-Type': 'application/json'
+            });
+            const results = await PacientesModel.deletePaciente(PacienteId);
+            res.end("Paciente eliminado correctamente");
+        } catch (err) {
+            res.writeHead(500);
+            res.end(JSON.stringify("Error: " + err));
+        }
+    }
 }
