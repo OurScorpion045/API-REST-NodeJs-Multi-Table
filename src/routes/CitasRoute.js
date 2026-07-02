@@ -6,10 +6,10 @@ export async function citasRouter(req, res) {
     let url = req.url.split("/");
     url.shift();
     let id = "";
-    if (url.length > 1) {
-        id = url[1];
-    } else {
+    if (url[1] == '') {
         id = null;
+    } else {
+        id = url[1];
     }
     console.log(url);
 
