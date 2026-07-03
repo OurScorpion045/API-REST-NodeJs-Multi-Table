@@ -1,6 +1,6 @@
 import { PacientesModel } from "../models/PacientesModel.js";
 
-class PacientesController {
+export class PacientesController {
 
     static async getAllPacientes(req, res) {
         try {
@@ -54,7 +54,7 @@ class PacientesController {
         }
     }
 
-    static async deletePaciente(PacienteId) {
+    static async deletePaciente(req, res, PacienteId) {
         try {
             res.writeHead(200, {
                 'Content-Type': 'application/json'
