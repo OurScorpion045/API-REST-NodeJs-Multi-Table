@@ -30,17 +30,20 @@ export async function citasRouter(req, res) {
                 let data = await parseBody(req);
                 await CitasController.updateCita(req, res, data['PacienteId'], data['Fecha'], data['HoraInicio'], data['HoraFin'], data['Estado'], data['Motivo'], id);
             } else {
-                res.end(JSON.stringify("Error, id no encontrado"));
+                res.writeHead(400);
+                res.end(JSON.stringify("Error, id no valido"));
             }
             break;
         case 'DELETE':
             if (id) {
                 await CitasController.deleteCita(req, res, id);
             } else {
-                res.end(JSON.stringify("Error, id no encontrado"));
+                res.writeHead(400);
+                res.end(JSON.stringify("Error, id no valido"));
             }
             break;
         default:
+            res.writeHead(400);
             res.end(JSON.stringify("Error, metodo no valido"));
             break;
     }
