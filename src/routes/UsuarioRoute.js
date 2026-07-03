@@ -1,7 +1,7 @@
 import { UsuarioController } from "../controllers/UsuarioController.js";
 import { parseBody } from "../utils/parseBody.js";
 
-export const usuarioController = async (req, res) => {
+export const usuarioRouter = async (req, res) => {
     const method = req.method;
     let url = req.url.split('/');
     url.shift();
