@@ -1,7 +1,7 @@
 import { UsuarioModel } from "../models/UsuarioModel.js";
 import { hashPassword } from "../utils/bcrypt.js";
 
-class UsuarioController {
+export class UsuarioController {
 
     static async getAllUsuarios(req, res) {
         try {
