@@ -11,7 +11,6 @@ export async function citasRouter(req, res) {
     } else {
         id = url[1];
     }
-    console.log(url);
 
     switch (method) {
         case 'GET':
