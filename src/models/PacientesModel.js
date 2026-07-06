@@ -1,6 +1,6 @@
 import { pool } from "../config/Database.js";
 
-class PacientesModel {
+export class PacientesModel {
 
     static async getAllPacientes() {
         const sql = "SELECT * FROM `pacientes` ORDER BY `PacienteId` DESC";
@@ -10,25 +10,29 @@ class PacientesModel {
 
     static async getPacienteById(PacienteId) {
         const sql = "SELECT * FROM `pacientes` WHERE `PacienteId` = ?";
-        const [rows, fields] = await pool.execute(sql, PacienteId);
+        let values = [PacienteId];
+        const [rows, fields] = await pool.execute(sql, values);
         return rows;
     }
 
     static async insertPaciente(DNI, Nombre, Direccion, CodigoPostal, Telefono, Genero, FechaNacimiento, Correo) {
         const sql = "INSERT INTO `pacientes`(`DNI`, `Nombre`, `Direccion`, `CodigoPostal`, `Telefono`, `Genero`, `FechaNacimiento`, `Correo`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        const [rows, fields] = await pool.execute(sql, [DNI, Nombre, Direccion, CodigoPostal, Telefono, Genero, FechaNacimiento, Correo]);
+        let values = [DNI, Nombre, Direccion, CodigoPostal, Telefono, Genero, FechaNacimiento, Correo];
+        const [rows, fields] = await pool.execute(sql, values);
         return rows;
     }
 
     static async updatePaciente(DNI, Nombre, Direccion, CodigoPostal, Telefono, Genero, FechaNacimiento, Correo, PacienteId) {
         const sql = "UPDATE `pacientes` SET `DNI` = ?, `Nombre` = ?, `Direccion` = ?, `CodigoPostal` = ?, `Telefono` = ?, `Genero` = ?, `FechaNacimiento` = ?, `Correo` = ? WHERE `PacienteId` = ?";
-        const [rows, fields] = await pool.execute(sql [DNI, Nombre, Direccion, CodigoPostal, Telefono, Genero, FechaNacimiento, Correo, PacienteId]);
+        let values = [DNI, Nombre, Direccion, CodigoPostal, Telefono, Genero, FechaNacimiento, Correo, PacienteId];
+        const [rows, fields] = await pool.execute(sql, values);
         return rows;
     }
 
     static async deletePaciente(PacienteId) {
         const sql = "DELETE FROM `pacientes` WHERE `PacienteId` = ?";
-        const [rows, fields] = await pool.execute(sql, PacienteId);
+        let values = [PacienteId];
+        const [rows, fields] = await pool.execute(sql, values);
         return rows;
     }
 }
