@@ -28,7 +28,7 @@ export class CitasModel {
 
     static async deleteUsuario(CitaId) {
         const sql = "DELETE FROM `citas` WHERE `CitaId` = ?";
-        const [rows, fields] = await pool.execute(sql, CitaId);
+        const [rows, fields] = await pool.execute(sql, [CitaId]);
         return rows;
     }
 }
