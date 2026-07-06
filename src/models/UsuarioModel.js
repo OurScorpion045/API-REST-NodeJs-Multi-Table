@@ -1,6 +1,6 @@
 import { pool } from "../config/Database.js";
 
-class UsuarioModel {
+export class UsuarioModel {
 
     static async getAllUsuarios() {
         const sql = "SELECT * FROM `usuarios` ORDER BY `UsuarioId` DESC";
@@ -10,7 +10,7 @@ class UsuarioModel {
 
     static async getUsuarioById(UsuarioId) {
         const sql = "SELECT * FROM `usuarios` WHERE `UsuarioId` = ?";
-        const [rows, fields] = await pool.execute(sql, UsuarioId);
+        const [rows, fields] = await pool.execute(sql, [UsuarioId]);
         return rows;
     }
 
@@ -28,7 +28,7 @@ class UsuarioModel {
 
     static async deleteUsuario(UsuarioId) {
         const sql = "DELETE FROM `usuarios` WHERE `UsuarioId` = ?";
-        const [rows, fields] = await pool.execute(sql, UsuarioId);
+        const [rows, fields] = await pool.execute(sql, [UsuarioId]);
         return rows;
     }
 }
