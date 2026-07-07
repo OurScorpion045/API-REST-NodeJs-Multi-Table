@@ -1,5 +1,5 @@
 import { UsuarioModel } from "../models/UsuarioModel.js";
-import { hashPassword } from "../utils/bcrypt.js";
+import bcrypt from "bcrypt";
 
 export class UsuarioController {
 
@@ -8,7 +8,7 @@ export class UsuarioController {
             res.writeHead(200, {
                 'Content-Type': 'application/json'
             });
-            const results = await UsuarioModel.getAllUsuarios();
+            let results = await UsuarioModel.getAllUsuarios();
             res.end(JSON.stringify(results));
         } catch (err) {
             res.writeHead(500);
@@ -21,7 +21,7 @@ export class UsuarioController {
             res.writeHead(200, {
                 'Content-Type': 'application/json'
             });
-            const results = await UsuarioModel.getUsuarioById(UsuarioId);
+            let results = await UsuarioModel.getUsuarioById(UsuarioId);
             res.end(JSON.stringify(results));
         } catch (err) {
             res.writeHead(500);
@@ -34,11 +34,8 @@ export class UsuarioController {
             res.writeHead(200, {
                 'Content-Type': 'application/json'
             });
-            const hPassword = await hashPassword(Password);
-            if (hPassword = null) {
-                throw new Error("Error al hashear la contraseña del nuevo usuario");
-            }
-            const results = await UsuarioModel.insertUsuario(Usuario, hPassword, Estado);
+            const passwordHash = await bcrypt.hash(Password, 10);
+            let results = await UsuarioModel.insertUsuario(Usuario, passwordHash, Estado);
             res.end(JSON.stringify("Usuario insertado correctamente"));
         } catch (err) {
             res.writeHead(500);
@@ -51,7 +48,7 @@ export class UsuarioController {
             res.writeHead(200, {
                 'Content-Type': 'application/json'
             });
-            const results = await UsuarioModel.updateUsuario(Usuario, Password, Estado, UsuarioId);
+            let results = await UsuarioModel.updateUsuario(Usuario, Password, Estado, UsuarioId);
             res.end(JSON.stringify("Usuario actualizado correctamente"));
         } catch (err) {
             res.writeHead(500);
@@ -64,7 +61,7 @@ export class UsuarioController {
             res.writeHead(200, {
                 'Content-Type': 'application/json'
             });
-            const results = await UsuarioModel.deleteUsuario(UsuarioId);
+            let results = await UsuarioModel.deleteUsuario(UsuarioId);
             res.end(JSON.stringify("Usuario eliminado correctamente"));
         } catch (err) {
             res.writeHead(500);
