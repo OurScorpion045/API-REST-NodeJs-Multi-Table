@@ -13,8 +13,6 @@ export const usuarioRouter = async (req, res) => {
         id = url[1];
     }
 
-    let data = null;
-
     switch (method) {
         case 'GET':
             if (id) {
@@ -24,12 +22,12 @@ export const usuarioRouter = async (req, res) => {
             }
             break;
         case 'POST':
-            data = parseBody(req);
+            let data = await parseBody(req);
             await UsuarioController.insertUsuario(req, res, data['Usuario'], data['Password'], data['Estado']);
             break;
         case 'PUT':
             if (id) {
-                data = parseBody(req);
+                let data = await parseBody(req);
                 await UsuarioController.updateUsuario(req, res, data['Usuario'], data['Password'], data['Estado'], id);
             } else {
                 res.writeHead(400);
@@ -38,7 +36,7 @@ export const usuarioRouter = async (req, res) => {
             break;
         case 'DELETE':
             if (id) {
-                data = parseBody(req);
+                let data = await parseBody(req);
                 await UsuarioController.deleteUsuario(req, res, id);
             } else {
                 res.writeHead(400);
